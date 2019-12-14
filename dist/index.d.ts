@@ -1,14 +1,14 @@
-declare class CardPile {
-    cards: unknown[];
-    constructor(cards: unknown[]);
+declare class CardPile<Card> {
+    cards: Card[];
+    constructor(cards: Card[]);
     resetCards: (cards: any) => void;
-    draw: (count: number) => unknown[];
-    drawFromBottom: (count: number) => unknown[];
-    drawRandomly: (count: number) => unknown[];
+    draw: (count: number) => Card[];
+    drawFromBottom: (count: number) => Card[];
+    drawRandomly: (count: number) => Card[];
     cardsRemainingCount: () => number;
     shuffle: () => void;
-    returnAndShuffle: (cards: unknown[]) => void;
-    returnToTop: (cards: unknown[]) => void;
-    returnToBottom: (cards: unknown[]) => void;
+    returnAndShuffle: (cards: Card[]) => void;
+    returnToTop: (cards: Card[]) => void;
+    returnToBottom: (cards: Card[]) => void;
 }
 export default CardPile;

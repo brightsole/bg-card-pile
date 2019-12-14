@@ -9,14 +9,14 @@ test('it allows you to give it cards to keep track of', t => {
 
 test('returns the number of cards remaining', t => {
   const cards = ['niner', 'erasthenes', 1, 2];
-  const deck = new CardPile(cards);
+  const deck = new CardPile<number | string>(cards);
 
   t.deepEqual(4, deck.cardsRemainingCount());
 });
 
 test('allows you to draw cards', t => {
   const cards = [1, 2];
-  const graveyard = new CardPile(cards);
+  const graveyard = new CardPile<number>(cards);
 
   const grabbedCards = graveyard.draw(2);
   t.deepEqual(grabbedCards, cards);
@@ -43,7 +43,10 @@ test('allows you to draw a random set of cards', t => {
 
 test('appends cards onto the bottom without shuffling', t => {
   const cards = [1, 2];
-  const deck = new CardPile(cards);
+  type SimpleA = {
+    a: string;
+  };
+  const deck = new CardPile<string | SimpleA | number>(cards);
 
   deck.returnToBottom(['niner', { a: 'a' }]);
   t.deepEqual(deck.cards, [1, 2, 'niner', { a: 'a' }]);
@@ -51,7 +54,7 @@ test('appends cards onto the bottom without shuffling', t => {
 
 test('appends cards onto the top without shuffling', t => {
   const cards = [1, 2];
-  const deck = new CardPile(cards);
+  const deck = new CardPile<any>(cards);
 
   deck.returnToTop(['niner', { a: 'a' }]);
   t.deepEqual(deck.cards, ['niner', { a: 'a' }, 1, 2]);
@@ -59,7 +62,7 @@ test('appends cards onto the top without shuffling', t => {
 
 test('returns cards and shuffles', t => {
   const cards = [1, 2];
-  const deck = new CardPile(cards);
+  const deck = new CardPile<string | number>(cards);
 
   deck.returnAndShuffle(['erasthenes', 'niner']);
 

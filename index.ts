@@ -1,9 +1,9 @@
-import { shuffle, selectUniqueRandoms } from '@brightsole/bg-utils';
+import { shuffle, selectUniqueIndices } from '@brightsole/bg-utils';
 
-class CardPile {
-  cards: unknown[];
+class CardPile<Card> {
+  cards: Card[];
 
-  constructor(cards: unknown[]) {
+  constructor(cards: Card[]) {
     this.cards = cards;
   }
 
@@ -20,7 +20,7 @@ class CardPile {
     return drawnCards;
   };
 
-  drawFromBottom = (count: number) => {
+  drawFromBottom = (count: number): Card[] => {
     const index = this.cards.length - count;
 
     const drawnCards = this.cards.slice(index);
@@ -29,10 +29,9 @@ class CardPile {
     return drawnCards;
   };
 
-  drawRandomly = (count: number) => {
-    const indices = Array.from(Array(this.cards.length)).map((_, i) => i);
-    const randomIndices = selectUniqueRandoms({
-      arrayToSelectFrom: indices,
+  drawRandomly = (count: number): Card[] => {
+    const randomIndices = selectUniqueIndices({
+      max: this.cards.length,
       numberToSelect: count,
     });
 
@@ -47,23 +46,23 @@ class CardPile {
     return this.cards.length;
   };
 
-  shuffle = () => {
+  shuffle = (): void => {
     this.cards = shuffle(this.cards);
   };
 
-  returnAndShuffle = (cards: unknown[]) => {
+  returnAndShuffle = (cards: Card[]): void => {
     this.resetCards(cards);
 
     this.cards = shuffle(this.cards.concat(cards));
   };
 
-  returnToTop = (cards: unknown[]) => {
+  returnToTop = (cards: Card[]): void => {
     this.resetCards(cards);
 
     this.cards = cards.concat(this.cards);
   };
 
-  returnToBottom = (cards: unknown[]) => {
+  returnToBottom = (cards: Card[]): void => {
     this.resetCards(cards);
 
     this.cards = this.cards.concat(cards);

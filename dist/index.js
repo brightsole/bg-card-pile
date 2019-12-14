@@ -22,9 +22,8 @@ var CardPile = /** @class */ (function () {
             return drawnCards;
         };
         this.drawRandomly = function (count) {
-            var indices = Array.from(Array(_this.cards.length)).map(function (_, i) { return i; });
-            var randomIndices = bg_utils_1.selectUniqueRandoms({
-                arrayToSelectFrom: indices,
+            var randomIndices = bg_utils_1.selectUniqueIndices({
+                max: _this.cards.length,
                 numberToSelect: count
             });
             var cards = _this.cards.filter(function (_, i) { return randomIndices.includes(i); });
