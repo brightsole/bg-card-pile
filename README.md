@@ -39,3 +39,6 @@
 
 ### TODO:
 nothing! It's a functional deck/graveyard/whatever pile of cards. Methods can be added as needed, but this will handle the next 3 games I have planned.
+
+<br/>
+<a href="https://www.buymeacoffee.com/Ao9uzMG" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
